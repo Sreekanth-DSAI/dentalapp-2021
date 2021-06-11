@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dental Hospital Appointments</title>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+   
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/">Dental Hospital Appointments</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+		<div class="container">
+			<a class="navbar-brand" href="#"> <img src='https://innodatatics.com/images/excelr-logo-small.png' width=200, height=48, align='left'> </a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+			</div>
+	</nav>
+	
+	
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/">About</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#">Feedback</a>
+      </li>
+
+
+    </ul>
+
+  </div>
+</nav>
+<br/>
+<br/>
+
+<div class="jumbotron" style="background:linear-gradient(to bottom, #9900ff 0%,#66ccff 100% );color:#fff">
+    <div class="container">
+      <h3 class="display-3">Dental Hospital Appointments </h3>
+      <p>DentalApp Web-Application</p>
+      <p><a class="btn btn-success waves-effect btn-lg" href="/" role="button">Refresh &raquo;</a></p>
+    </div>
+  </div>
+<br/>
+<br/>
+<div class="container" >
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Patient Details:</legend>        
+      
+<BR>
+Gender:
+<select NAME="Gender"><OPTION>
+<OPTION VALUE=0 >F
+<OPTION VALUE=1 >M
+</select>
+<BR> 
+<BR>
+Appointment Day:
+<SELECT NAME="Appointment Day" ><OPTION>
+<OPTION VALUE=0 >Weekend
+<OPTION VALUE=1 >Weekday
+<OPTION VALUE=2 >Holiday
+</SELECT>
+<BR> 
+<BR>
+Age (yrs):
+<SELECT NAME="Age" ><OPTION>
+<OPTION VALUE=0 >3-10 
+<OPTION VALUE=1 >11-30
+<OPTION VALUE=2 >31-60
+<OPTION VALUE=3 >60 plus
+</SELECT>
+<BR>
+<BR>
+Distance (KM):
+<SELECT NAME="Distance" ><OPTION>
+<OPTION VALUE=0 >1-4
+<OPTION VALUE=1 >5-7
+<OPTION VALUE=2 >8-12
+</SELECT>
+<BR>
+<BR>
+Employment status:
+<SELECT NAME="Employement_status" ><OPTION>
+<OPTION VALUE=0 >Unemployed
+<OPTION VALUE=1 >Employed
+</SELECT>
+<BR>
+<BR>
+Type of Treatment:
+<SELECT NAME="Type_of_Treatment" ><OPTION>
+<OPTION VALUE=0 >Root Canal
+<OPTION VALUE=1 >Flap Surgery
+<OPTION VALUE=2 >Extractions
+<OPTION VALUE=3 >Braces
+<OPTION VALUE=4 >Dental Implant
+<OPTION VALUE=5 >Restorations
+<OPTION VALUE=6 >Fixed Prosthetic Denture
+<OPTION VALUE=7 >Scaling
+<OPTION VALUE=8 >Pulpectomy
+</SELECT>
+<BR>
+<BR>
+Cost of Treatment (INR):
+<SELECT NAME="Cost_of_Treatment" ><OPTION>
+<OPTION VALUE=0 >1000-2000
+<OPTION VALUE=1 > 1500-2500
+<OPTION VALUE=2 > 1000-3000
+<OPTION VALUE=3 > 4000-6000
+<OPTION VALUE=4 >6000-10000
+<OPTION VALUE=5 >5000-15000
+<OPTION VALUE=6 >25000-35000
+<OPTION VALUE=7 >30000-40000
+</SELECT>
+<BR>
+<BR>
+Insurance:
+<SELECT NAME="Insurance" ><OPTION>
+<OPTION VALUE=0 >YES
+<OPTION VALUE=1 >NO
+</SELECT>
+<BR>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ YES }}
+    	{% endfor %}
+		<br>
+    	<br> Patient will take the appointment
+    	{% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ NO }}
+    	{% endfor %}
+    	<br>
+    	<br> Patient will not show for appointment
+   		<p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+</html>
